@@ -1,0 +1,56 @@
+import requests
+import pandas as pd
+import json
+import csv
+import numpy
+import time
+from datetime import datetime
+import calendar
+import datetime
+
+
+a = float(input("Kakvo intervalche jelaesh /v minuti/:"))
+intervalche = a * 60
+city_name = str(input("City: "))
+api_key = "cc3fcd504a1244f5a5a161850220402"
+weather_url = "http://api.weatherapi.com/v1/current.json?key=cc3fcd504a1244f5a5a161850220402&q=" + city_name + "&aqi=no"
+headerList =  ["Temp", "  humidity", "  feelslike_c", "  City", "    UNIXTIME"]
+history_url = "http://api.weatherapi.com/v1/history.json?key=&q=London&dt=2022-01-11"
+with open("dannite.csv","w",newline='')as file:
+    writer = csv.writer(file)
+    dw = csv.DictWriter(file, delimiter=',',
+                        fieldnames=headerList)
+    dw.writeheader()
+
+
+
+while True:
+    time.sleep(intervalche)
+
+    response = requests.get(weather_url)
+
+    weather_data = response.json()
+    y = json.dumps(weather_data)
+#UNIX time
+    from datetime import datetime
+    import calendar
+
+    d = datetime.utcnow()
+    unixtime = calendar.timegm(d.utctimetuple())
+
+
+    import datetime
+
+    epochtime = unixtime
+    datetime = datetime.datetime.fromtimestamp(unixtime)
+
+#dannite
+    strr = str((weather_data['current']['feelslike_c'])) + ",     "+ str((weather_data['current']['humidity']))+\
+           ",       "+ str((weather_data['current']['temp_c'])) + ",        " + str((weather_data['location']['name']))+",    " + str(datetime)
+
+
+    print(strr)
+
+    with open("dannite.csv", "a") as file:
+
+        file.write( strr + "\n")
