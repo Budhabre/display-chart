@@ -12,8 +12,8 @@ import datetime
 a = float(input("Kakvo intervalche jelaesh /v minuti/:"))
 intervalche = a * 60
 city_name = str(input("City: "))
-api_key = "cc3fcd504a1244f5a5a161850220402"
-weather_url = "http://api.weatherapi.com/v1/current.json?key=cc3fcd504a1244f5a5a161850220402&q=" + city_name + "&aqi=no"
+api_key = "yahaha"
+weather_url = "http://api.weatherapi.com/v1/current.json?key=api_key=" + city_name + "&aqi=no"
 headerList =  ["Temp", "  humidity", "  feelslike_c", "  City", "    UNIXTIME"]
 history_url = "http://api.weatherapi.com/v1/history.json?key=&q=London&dt=2022-01-11"
 with open("dannite.csv","w",newline='')as file:
